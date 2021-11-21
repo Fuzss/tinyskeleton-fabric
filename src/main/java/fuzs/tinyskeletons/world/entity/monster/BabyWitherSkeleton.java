@@ -15,8 +15,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 
-public class BabyWitherSkeletonEntity extends WitherSkeleton implements ISkullCarryingMob {
-    public BabyWitherSkeletonEntity(EntityType<? extends WitherSkeleton> type, Level level) {
+public class BabyWitherSkeleton extends WitherSkeleton implements SkullCarryingMob {
+    public BabyWitherSkeleton(EntityType<? extends WitherSkeleton> type, Level level) {
         super(type, level);
         this.xpReward *= 2.5F;
     }

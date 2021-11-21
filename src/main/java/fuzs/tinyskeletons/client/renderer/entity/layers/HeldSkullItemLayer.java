@@ -3,7 +3,7 @@ package fuzs.tinyskeletons.client.renderer.entity.layers;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
 import fuzs.tinyskeletons.mixin.client.accessor.BlockRenderDispatcherAccessor;
-import fuzs.tinyskeletons.world.entity.monster.ISkullCarryingMob;
+import fuzs.tinyskeletons.world.entity.monster.SkullCarryingMob;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ArmedModel;
 import net.minecraft.client.model.EntityModel;
@@ -14,7 +14,7 @@ import net.minecraft.client.renderer.entity.layers.ItemInHandLayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 
-public class HeldSkullItemLayer<T extends LivingEntity & ISkullCarryingMob, M extends EntityModel<T> & ArmedModel> extends ItemInHandLayer<T, M> {
+public class HeldSkullItemLayer<T extends LivingEntity & SkullCarryingMob, M extends EntityModel<T> & ArmedModel> extends ItemInHandLayer<T, M> {
    public HeldSkullItemLayer(RenderLayerParent<T, M> p_i50934_1_) {
       super(p_i50934_1_);
    }

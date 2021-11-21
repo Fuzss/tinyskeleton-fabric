@@ -3,7 +3,7 @@ package fuzs.tinyskeletons;
 import fuzs.tinyskeletons.api.event.player.EntityInteractCallback;
 import fuzs.tinyskeletons.handler.BabyConversionHandler;
 import fuzs.tinyskeletons.registry.ModRegistry;
-import fuzs.tinyskeletons.world.entity.monster.BabyStrayEntity;
+import fuzs.tinyskeletons.world.entity.monster.BabyStray;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.mixin.object.builder.SpawnRestrictionAccessor;
@@ -36,7 +36,7 @@ public class TinySkeletons implements ModInitializer {
     public static void onCommonSetup() {
         SpawnRestrictionAccessor.callRegister(ModRegistry.BABY_SKELETON_ENTITY_TYPE, SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules);
         SpawnRestrictionAccessor.callRegister(ModRegistry.BABY_WITHER_SKELETON_ENTITY_TYPE, SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules);
-        SpawnRestrictionAccessor.callRegister(ModRegistry.BABY_STRAY_ENTITY_TYPE, SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, BabyStrayEntity::checkBabyStraySpawnRules);
+        SpawnRestrictionAccessor.callRegister(ModRegistry.BABY_STRAY_ENTITY_TYPE, SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, BabyStray::checkBabyStraySpawnRules);
         BabyConversionHandler.registerConversion(EntityType.SKELETON, ModRegistry.BABY_SKELETON_ENTITY_TYPE);
         BabyConversionHandler.registerConversion(EntityType.WITHER_SKELETON, ModRegistry.BABY_WITHER_SKELETON_ENTITY_TYPE);
         BabyConversionHandler.registerConversion(EntityType.STRAY, ModRegistry.BABY_STRAY_ENTITY_TYPE);
