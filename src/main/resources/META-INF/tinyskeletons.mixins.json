@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "compatibilityLevel": "JAVA_16",
+  "package": "fuzs.tinyskeletons.mixin",
+  "refmap": "META-INF/tinyskeletons.refmap.json",
+  "mixins": [
+    "PlayerMixin"
+  ],
+  "client": [
+    "client.accessor.BlockRenderDispatcherAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
