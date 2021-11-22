@@ -7,12 +7,11 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.EntityHitResult;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 import java.util.Optional;
@@ -24,17 +23,22 @@ public class BabyConversionHandler {
         BABY_MOB_CONVERSIONS.put(targetMob, convertsTo);
     }
 
-//    public void onSpecialSpawn(final LivingSpawnEvent.SpecialSpawn evt) {
-//        if (evt.getWorld() instanceof ServerLevel level && Zombie.getSpawnAsBabyOdds(evt.getWorld().getRandom())) {
-//            EntityType<? extends Mob> babyType = BABY_MOB_CONVERSIONS.get(evt.getEntity().getType());
-//            if (babyType != null) {
-//                makeBabyMob(level, babyType, evt.getEntity(), evt.getSpawnReason()).ifPresent(mobentity -> evt.setCanceled(true));
-//            }
-//        }
-//    }
+    public boolean onMobCreate(Level level, Mob mob, MobSpawnType spawnReason) {
+        // spawner type shouldn't end up here anyways, but just to make sure
+        // would break balancing for baby wither skeletons
+        // also exclude summoned by command as this would break forcefully spawning an adult skeleton since there is no baby flag as with zombies which could force that otherwise
+        if (spawnReason != MobSpawnType.SPAWNER && spawnReason != MobSpawnType.COMMAND) {
+            if (level instanceof ServerLevel serverLevel && Zombie.getSpawnAsBabyOdds(serverLevel.getRandom())) {
+                EntityType<? extends Mob> babyType = BABY_MOB_CONVERSIONS.get(mob.getType());
+                if (babyType != null) {
+                    return makeBabyMob(serverLevel, babyType, mob, spawnReason).isPresent();
+                }
+            }
+        }
+        return false;
+    }
 
     public InteractionResult onEntityInteract(Player player, Level world, InteractionHand hand, Entity target) {
-        if (player.isSpectator()) return InteractionResult.PASS;
         ItemStack itemstack = player.getItemInHand(hand);
         if (target.isAlive() && itemstack.getItem() instanceof SpawnEggItem) {
             EntityType<?> eggType = ((SpawnEggItem) itemstack.getItem()).getType(itemstack.getTag());

@@ -1,6 +1,7 @@
 package fuzs.tinyskeletons;
 
 import fuzs.tinyskeletons.api.event.player.EntityInteractCallback;
+import fuzs.tinyskeletons.api.event.player.MobCreateCallback;
 import fuzs.tinyskeletons.handler.BabyConversionHandler;
 import fuzs.tinyskeletons.registry.ModRegistry;
 import fuzs.tinyskeletons.world.entity.monster.BabyStray;
@@ -29,6 +30,7 @@ public class TinySkeletons implements ModInitializer {
 
     public static void onConstructMod() {
         final BabyConversionHandler handler = new BabyConversionHandler();
+        MobCreateCallback.EVENT.register(handler::onMobCreate);
         EntityInteractCallback.EVENT.register(handler::onEntityInteract);
         ModRegistry.touch();
     }
