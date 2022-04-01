@@ -29,10 +29,14 @@ public class TinySkeletons implements ModInitializer {
     }
 
     public static void onConstructMod() {
+        ModRegistry.touch();
+        registerHandlers();
+    }
+
+    private static void registerHandlers() {
         final BabyConversionHandler handler = new BabyConversionHandler();
         MobCreateCallback.EVENT.register(handler::onMobCreate);
         EntityInteractCallback.EVENT.register(handler::onEntityInteract);
-        ModRegistry.touch();
     }
 
     public static void onCommonSetup() {
@@ -45,8 +49,8 @@ public class TinySkeletons implements ModInitializer {
     }
 
     public static void onEntityAttributeCreation() {
-        FabricDefaultAttributeRegistry.register(ModRegistry.BABY_SKELETON_ENTITY_TYPE, Monster.createMonsterAttributes().add(Attributes.MOVEMENT_SPEED, 0.375));
-        FabricDefaultAttributeRegistry.register(ModRegistry.BABY_WITHER_SKELETON_ENTITY_TYPE, Monster.createMonsterAttributes().add(Attributes.MOVEMENT_SPEED, 0.375));
-        FabricDefaultAttributeRegistry.register(ModRegistry.BABY_STRAY_ENTITY_TYPE, Monster.createMonsterAttributes().add(Attributes.MOVEMENT_SPEED, 0.375));
+        FabricDefaultAttributeRegistry.register(ModRegistry.BABY_SKELETON_ENTITY_TYPE, Monster.createMonsterAttributes().add(Attributes.ATTACK_DAMAGE, 1.0).add(Attributes.MOVEMENT_SPEED, 0.3));
+        FabricDefaultAttributeRegistry.register(ModRegistry.BABY_WITHER_SKELETON_ENTITY_TYPE, Monster.createMonsterAttributes().add(Attributes.ATTACK_DAMAGE, 1.0).add(Attributes.MOVEMENT_SPEED, 0.3));
+        FabricDefaultAttributeRegistry.register(ModRegistry.BABY_STRAY_ENTITY_TYPE, Monster.createMonsterAttributes().add(Attributes.ATTACK_DAMAGE, 1.0).add(Attributes.MOVEMENT_SPEED, 0.3));
     }
 }

@@ -39,6 +39,12 @@ public class BabyWitherSkeleton extends WitherSkeleton implements SkullCarryingM
     }
 
     @Override
+    public float getPickRadius() {
+        // width has same pick radius as adult like this, only height remains shorter
+        return 0.35F;
+    }
+
+    @Override
     public boolean isBaby() {
         return true;
     }

@@ -7,7 +7,8 @@
   "mixins": [
     "EntityTypeMixin",
     "NaturalSpawnerMixin",
-    "PlayerMixin"
+    "PlayerMixin",
+    "accessor.LivingEntityAccessor"
   ],
   "client": [
     "client.accessor.BlockRenderDispatcherAccessor"
